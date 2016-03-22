@@ -1,0 +1,8 @@
+#! /bin/bash
+
+if [[ $INTERNET = no ]]; then
+    echo 'Gah! No internets!!' 1>&2
+    exit 1
+else
+    /usr/bin/curl "$@"
+fi
