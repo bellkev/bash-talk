@@ -1,5 +1,8 @@
 #! /bin/bash
 
+set -e
+set -o pipefail
+
 
 hottest() {
     url="https://api.github.com/search/repositories"
@@ -13,7 +16,7 @@ hottest() {
 old_hotness=""
 
 while true; do
-    new_hotness="$(hottest JavaScript)"
+    new_hotness="$(set -e; hottest JavaScript)"
     if [[ $old_hotness != $new_hotness ]]; then
         message="Alert! The hottest JavaScript project is $new_hotness"
         echo "$message"
