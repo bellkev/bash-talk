@@ -4,7 +4,9 @@
 hottest() {
     url="https://api.github.com/search/repositories"
     query_params="o=desc&q=language:$1&sort=updated&per_page=1"
-    curl -s "$url?$query_params" | jq -r '.items | .[] | .name'
+    result="$(curl -s "$url?$query_params" | jq -r '.items | .[] | .name')"
+    echo "GH search result: $result" 1>&2
+    echo "$result"
 }
 
 
